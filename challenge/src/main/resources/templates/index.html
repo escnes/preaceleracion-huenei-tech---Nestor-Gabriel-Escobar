@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Inicio</title>
         <meta charset="UTF-8">
     </head>
     <body>
-        <div>Hola Mundo</div>
+        <h1>Inicio</h1>
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                </tr>
+                <tr th:each="personaje : ${personajes}">
+                    <td th:text="${personaje.nombre}"></td>
+                </tr>
+            </table>
+            <table border="1">
+                <tr>
+                    <th>Titulo</th>
+                </tr>
+                <tr th:each="pelicula : ${peliculas}">
+                    <td th:text="${pelicula.titulo}"></td>
+                </tr>
+            </table>
     </body>
 </html>
