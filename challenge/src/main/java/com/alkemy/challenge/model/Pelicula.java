@@ -1,16 +1,15 @@
 package com.alkemy.challenge.model;
 
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import lombok.Data;
@@ -38,8 +37,8 @@ public class Pelicula implements Serializable {
     @Column
     private int calificacion;
     
-    @OneToOne
+    @ManyToMany
     @JoinColumn(name = "personaje_asociado")
-    private Personaje personajeAsociado;
+    private List<Personaje> personajeAsociado;
     
 }
