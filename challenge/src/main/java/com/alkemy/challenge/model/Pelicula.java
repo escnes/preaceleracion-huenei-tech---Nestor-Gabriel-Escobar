@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,7 +39,11 @@ public class Pelicula implements Serializable {
     private int calificacion;
     
     @ManyToMany
-    @JoinColumn(name = "personaje_asociado")
+    @JoinTable(
+            name = "pelicula_personaje",
+            joinColumns = @JoinColumn(name = "id_pelicula"),
+            inverseJoinColumns = @JoinColumn(name = "id_personaje")
+    )
     private List<Personaje> personajeAsociado;
     
 }

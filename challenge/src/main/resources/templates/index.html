@@ -6,43 +6,8 @@
     </head>
     <body>
         <h1>Inicio</h1>
-        <h2>Lista de Personajes</h2>
+        <a th:href="@{/characters}">Listar Personajes</a>
         <br/>
-            <table border="1">
-                <th>Nombre</th>
-                <th>Imagen</th>
-                <th>Edad</th>
-                <th>Peso</th>
-                <th>Historia</th>
-                <tr th:each="personaje : ${personajes}">
-                    
-                    <td th:text="${personaje.nombre}"></td>
-                    
-                    <td><img th:src="@{${personaje.imagen}}" width="50" height="50" /></td>
-                    
-                    <td th:text="${personaje.edad}"></td>
-                    
-                    <td th:text="${personaje.peso}"></td>
-                    
-                    <td th:text="${personaje.historia}"></td>
-                </tr>
-            </table>
-        <h2>Lista de Películas</h2>
-        <br/>
-            <table border="1">
-                <tr>
-                    <th>Titulo</th>
-                    <th>Imagen</th>
-                    <th>Fecha Creación</th>
-                    <th>Calificación</th>
-                </tr>
-                <tr th:each="pelicula : ${peliculas}">
-                    <td th:text="${pelicula.titulo}"></td>
-                    <td><img th:src="${pelicula.imagen}" alt="alt" width="50" height="50"/></td>
-                    <td th:text="${pelicula.fechaCreacion}"></td>
-                    <td th:text="${pelicula.calificacion}"></td>
-                </tr>
-                </tr>
-            </table>
+        <a th:href="@{/movies}">Listar Peliculas</a>
     </body>
 </html>

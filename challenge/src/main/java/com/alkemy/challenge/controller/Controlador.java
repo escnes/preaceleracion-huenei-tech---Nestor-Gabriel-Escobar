@@ -19,12 +19,21 @@ public class Controlador {
     
     
     @GetMapping("/")
-    public String inicio(Model model){
-      
-        var personajes = personajeService.listarPersonajes();
-        var peliculas = peliculaService.listarPeliculas();
-        model.addAttribute("personajes",personajes);
-        model.addAttribute("peliculas",peliculas);
+    public String inicio(){
         return "index";
+    }
+    
+    @GetMapping("/characters")
+    public String listaPersonajes(Model model){
+        var personajes = personajeService.listarPersonajes();
+        model.addAttribute("personajes",personajes);
+        return "characters";
+    }
+    
+    @GetMapping("/movies")
+    public String listaPeliculas(Model model){
+        var peliculas = peliculaService.listarPeliculas();
+        model.addAttribute("peliculas",peliculas);
+        return "movies";
     }
 }
