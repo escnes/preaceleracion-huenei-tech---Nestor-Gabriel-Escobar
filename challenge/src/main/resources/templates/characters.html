@@ -16,6 +16,8 @@
                     <td th:text="${personaje.nombre}"></td>
                     
                     <td><img th:src="@{${personaje.imagen}}" width="50" height="50" /></td>
+                    
+                    <td th:each="pelicula : ${personaje.peliculaAsociada}" th:text="${pelicula.titulo}"></td>
                 </tr>
             </table>
     </body>

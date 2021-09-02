@@ -46,4 +46,11 @@ public class Pelicula implements Serializable {
     )
     private List<Personaje> personajeAsociado;
     
+    @ManyToMany
+    @JoinTable(
+            name = "pelicula_genero",
+            joinColumns = @JoinColumn(name = "id_pelicula"),
+            inverseJoinColumns = @JoinColumn(name = "id_genero")
+    )
+    private List<Genero> generoAsociado;
 }

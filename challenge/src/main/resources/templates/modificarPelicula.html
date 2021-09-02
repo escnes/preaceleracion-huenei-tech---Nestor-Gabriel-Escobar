@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Datos de la Pelicula</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>Datos de la Pelicula</h1>
+        <form th:action="@{/guardarPelicula}" method="post" th:object="${pelicula}">
+            <input type=hidden name="idPelicula" th:field="*{idPelicula}"/>
+            <br/>
+            <label for="titulo">Titulo:</label>
+            <input type="text" name="titulo" th:field="*{titulo}"/>
+            <br/>
+            <label for="titulo">Fecha de Creacion:</label>
+            <input type="date" name="fechaCreacion" th:field="*{fechaCreacion}"/>
+            <br/>
+            <label for="calificacion">Calificacion:</label>
+            <input type="num" name="calificacion" th:field="*{calificacion}"/>
+        </form>
+        <br/>
+        <a th:href="@{/}">Regresar</a>
+    </body>
+</html>

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
@@ -25,7 +24,6 @@ public class Genero implements Serializable {
     @Column
     private String imagen;
     
-    @ManyToMany
-    @JoinColumn(name = "pelicula_asociada")
+    @ManyToMany(mappedBy = "generoAsociado")
     private List<Pelicula> peliculaAsociada;
 }
