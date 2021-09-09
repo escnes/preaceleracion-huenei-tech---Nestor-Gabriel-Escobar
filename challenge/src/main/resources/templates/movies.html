@@ -9,17 +9,28 @@
         <br/>
             <table border="1">
                 <tr>
-                    <th>Titulo</th>
                     <th>Imagen</th>
+                    <th>Titulo</th>
                     <th>Fecha Creación</th>
-                    <th>Personajes Asociados</th>
+                    <th>Detalle</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
                 <tr th:each="pelicula : ${peliculas}">
+                    <td><img th:src="@{${pelicula.imagen}}" alt="" width="100" height="100"/></td>
+                    
                     <td th:text="${pelicula.titulo}"></td>
-                    <td><img th:src="@{${pelicula.imagen}}" alt="" width="50" height="50"/></td>
+                    
                     <td th:text="${pelicula.fechaCreacion}"></td>
-                    <td th:each="personaje : ${pelicula.personajeAsociado}" th:text="${personaje.nombre} "></td>
+                    
+                    <td><a th:href="@{/movies/detalle(idPelicula=${pelicula.idPelicula})}">Detalle</td>
+                    
+                    <td><a th:href="@{/movies/editar(idPelicula=${pelicula.idPelicula})}"/>Editar</td>
+                    
+                    <td><a th:href="@{/movies/eliminar(idPelicula=${pelicula.idPelicula})}"/>Eliminar</td>
                 </tr>
             </table>
+        <br/>
+        <a th:href="@{/}">Regresar</a>
     </body>
 </html>

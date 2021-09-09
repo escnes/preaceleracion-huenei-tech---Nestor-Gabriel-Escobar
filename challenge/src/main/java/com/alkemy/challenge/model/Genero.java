@@ -1,5 +1,6 @@
 package com.alkemy.challenge.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -9,9 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "persona")
 public class Genero implements Serializable {
@@ -24,6 +23,33 @@ public class Genero implements Serializable {
     @Column
     private String imagen;
     
+    @JsonIgnore
     @ManyToMany(mappedBy = "generoAsociado")
     private List<Pelicula> peliculaAsociada;
+
+    public Long getIdGenero() {
+        return idGenero;
+    }
+
+    public void setIdGenero(Long idGenero) {
+        this.idGenero = idGenero;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public List<Pelicula> getPeliculaAsociada() {
+        return peliculaAsociada;
+    }
+
+    public void setPeliculaAsociada(List<Pelicula> peliculaAsociada) {
+        this.peliculaAsociada = peliculaAsociada;
+    }
+    
+    
 }

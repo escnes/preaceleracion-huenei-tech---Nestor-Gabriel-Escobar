@@ -6,9 +6,11 @@ import java.util.List;
 public interface PersonajeService {
     public List<Personaje> listarPersonajes();
     
-    public void guardarPersonaje(Personaje personaje);
+    public Personaje guardarPersonaje(Personaje personaje);
     
     public void eliminarPersonaje(Personaje personaje);
     
     public Personaje encontrarPersonaje(Personaje personaje);
+    
+    public Personaje modificarPersonaje(Long id, Personaje personaje);
 }

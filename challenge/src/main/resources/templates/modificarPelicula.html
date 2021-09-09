@@ -6,17 +6,25 @@
     </head>
     <body>
         <h1>Datos de la Pelicula</h1>
-        <form th:action="@{/guardarPelicula}" method="post" th:object="${pelicula}">
+        <form th:action="@{/movies/guardar}" method="post" th:object="${pelicula}">
             <input type=hidden name="idPelicula" th:field="*{idPelicula}"/>
             <br/>
             <label for="titulo">Titulo:</label>
             <input type="text" name="titulo" th:field="*{titulo}"/>
             <br/>
+            <label for="imagen">Imagen:</label>
+            <input type="text" name="imagen" th:field="*{imagen}"/>
+            <br/>
             <label for="titulo">Fecha de Creacion:</label>
-            <input type="date" name="fechaCreacion" th:field="*{fechaCreacion}"/>
+            <input type="text" name="fechaCreacion" th:field="*{fechaCreacion}"/>
             <br/>
             <label for="calificacion">Calificacion:</label>
-            <input type="num" name="calificacion" th:field="*{calificacion}"/>
+            <input type="text" name="calificacion" th:field="*{calificacion}"/>
+            <br/>
+            <label for="personajeAsociado">Personajes Asociados:</label>
+            <input type="text" name="personajeAsociado" th:field="*{personajeAsociado}"/>
+            <br/>
+            <input type="submit" name="guardar" th:value="Guardar"/>
         </form>
         <br/>
         <a th:href="@{/}">Regresar</a>

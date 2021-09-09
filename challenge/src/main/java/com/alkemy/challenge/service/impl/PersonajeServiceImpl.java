@@ -19,8 +19,8 @@ public class PersonajeServiceImpl implements PersonajeService{
     }
 
     @Override
-    public void guardarPersonaje(Personaje personaje) {
-        personajeDao.save(personaje);
+    public Personaje guardarPersonaje(Personaje personaje) {
+        return personajeDao.save(personaje);
     }
 
     @Override
@@ -32,5 +32,16 @@ public class PersonajeServiceImpl implements PersonajeService{
     public Personaje encontrarPersonaje(Personaje personaje) {
         return personajeDao.findById(personaje.getIdPersonaje()).orElse(null);
     }
-    
+
+    @Override
+    public Personaje modificarPersonaje(Long id, Personaje personaje) {
+        Personaje p = personajeDao.findById(id).get();
+        p.setEdad(personaje.getEdad());
+        p.setHistoria(personaje.getHistoria());
+        p.setImagen(personaje.getImagen());
+        p.setNombre(personaje.getNombre());
+        p.setPeliculaAsociada(personaje.getPeliculaAsociada());
+        p.setPeso(personaje.getPeso());
+        return personajeDao.save(p);
+    }
 }

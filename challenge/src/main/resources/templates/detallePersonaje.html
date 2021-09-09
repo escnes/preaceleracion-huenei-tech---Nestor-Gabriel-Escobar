@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Detalle del personaje</h1>
+        <br/>
+            <table border="1">
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Peso</th>
+                <th>Historia</th>
+                <th>Peliculas Asociadas</th>
+                <tr>
+                    <td><img th:src="@{${personaje.imagen}}" width="100" height="100" /></td>
+                
+                    <td th:text="${personaje.nombre}"></td>
+
+                    <td th:text="${personaje.edad}"></td>
+                
+                    <td th:text="${personaje.peso}"></td>
+                
+                    <td th:text="${personaje.historia}"></td>
+                
+                    <td th:each="pelicula : ${personaje.peliculaAsociada}" th:text="${pelicula.titulo}"></td>
+                </tr>
+            </table>
+        <br/>
+        <a th:href="@{/characters}">Regresar</a>
+    </body>
+</html>

@@ -8,17 +8,24 @@
         <h2>Lista de Personajes</h2>
         <br/>
             <table border="1">
-                <th>Nombre</th>
                 <th>Imagen</th>
-                <th>Peliculas Asociadas</th>
+                <th>Nombre</th>
+                <th>Detalle</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
                 <tr th:each="personaje : ${personajes}">
+                    <td><img th:src="@{${personaje.imagen}}" width="100" height="100" /></td>
                     
                     <td th:text="${personaje.nombre}"></td>
                     
-                    <td><img th:src="@{${personaje.imagen}}" width="50" height="50" /></td>
+                    <td><a th:href="@{/characters/detalle(idPersonaje=${personaje.idPersonaje})}"/>Detalle</td>
                     
-                    <td th:each="pelicula : ${personaje.peliculaAsociada}" th:text="${pelicula.titulo}"></td>
+                    <td><a th:href="@{/characters/editar(idPersonaje=${personaje.idPersonaje})}"/>Editar</td>
+                    
+                    <td><a th:href="@{/characters/eliminar(idPersonaje=${personaje.idPersonaje})}"/>Eliminar</td>
                 </tr>
             </table>
+        <br/>
+        <a th:href="@{/}">Regresar</a>
     </body>
 </html>
