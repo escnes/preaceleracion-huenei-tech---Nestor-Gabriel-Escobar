@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h2>Lista de Personajes</h2>
+        <br/>
+            <table border="1">
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Detalle</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <tr th:each="personaje : ${personajes}">
+                    <td><img th:src="@{${personaje.imagen}}" width="100" height="100" /></td>
+                    
+                    <td th:text="${personaje.nombre}"></td>
+                    
+                    <td><a th:href="@{/personajes/detalle(idPersonaje=${personaje.idPersonaje})}"/>Detalle</td>
+                    
+                    <td><a th:href="@{/personajes/editar(idPersonaje=${personaje.idPersonaje})}"/>Editar</td>
+                    
+                    <td><a th:href="@{/personajes/eliminar(idPersonaje=${personaje.idPersonaje})}"/>Eliminar</td>
+                </tr>
+            </table>
+        <br/>
+        <a th:href="@{/}">Regresar</a>
+    </body>
+</html>

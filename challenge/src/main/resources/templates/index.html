@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Inicio</title>
         <meta charset="UTF-8">
     </head>
     <body>
-        <div>Hola Mundo</div>
+        <h1>Inicio</h1>
+        <a th:href="@{/personajes}">Listar Personajes</a> <a th:href="@{/personajes/crear}" >Crear Personaje</a>
+        <br/>
+        <a th:href="@{/peliculas}">Listar Peliculas</a> <a th:href="@{/peliculas/crear}">Crear Pelicula</a>
     </body>
 </html>

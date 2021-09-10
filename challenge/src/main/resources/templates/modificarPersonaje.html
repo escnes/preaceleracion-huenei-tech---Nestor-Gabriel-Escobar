@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Datos del Personaje</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <h1>Datos del personaje</h1>
+        <form th:action="@{/personajes/guardar}" method="post" th:object="${personaje}">
+            <input type=hidden name="idPersonaje" th:field="*{idPersonaje}"/>
+            <br/>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" th:field="*{nombre}"/>
+            <br/>
+            <label for="imagen">Imagen:</label>
+            <input type="text" name="imagen" th:field="*{imagen}"/>
+            <br/>
+            <label for="edad">Edad:</label>
+            <input type="text" name="edad" th:field="*{edad}"/>
+            <br/>
+            <label for="peso">Peso:</label>
+            <input type="text" name="peso" th:field="*{peso}"/>
+            <br/>
+            <label for="historia">Historia:</label>
+            <input type="text" name="historia" th:field="*{historia}"/>
+            <br/>
+            <label for="peliculaAsociada">Peliculas Asociadas:</label>
+            <input type="text" name="peliculaAsociada" th:field="*{peliculaAsociada}"/>
+            <br/>
+            <input type="submit" name="guardar" th:value="Guardar"/>
+        </form>
+        <br/>
+        <a th:href="@{/}">Regresar</a>
+    </body>
+</html>
