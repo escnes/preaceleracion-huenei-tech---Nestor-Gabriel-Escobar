@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Datos del personaje</h1>
-        <form th:action="@{/characters/guardar}" method="post" th:object="${personaje}">
+        <form th:action="@{/personajes/guardar}" method="post" th:object="${personaje}">
             <input type=hidden name="idPersonaje" th:field="*{idPersonaje}"/>
             <br/>
             <label for="nombre">Nombre:</label>
@@ -23,6 +23,9 @@
             <br/>
             <label for="historia">Historia:</label>
             <input type="text" name="historia" th:field="*{historia}"/>
+            <br/>
+            <label for="peliculaAsociada">Peliculas Asociadas:</label>
+            <input type="text" name="peliculaAsociada" th:field="*{peliculaAsociada}"/>
             <br/>
             <input type="submit" name="guardar" th:value="Guardar"/>
         </form>

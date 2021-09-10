@@ -1,13 +1,16 @@
 package com.alkemy.challenge.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -48,8 +51,12 @@ public class Personaje implements Serializable {
     @Column
     private String historia;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "personajeAsociado")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "pelicula_personaje",
+            joinColumns = @JoinColumn(name = "id_personaje"),
+            inverseJoinColumns = @JoinColumn(name = "id_pelicula")
+    )
     private List<Pelicula> peliculaAsociada;
 
     public Long getIdPersonaje() {
@@ -106,6 +113,55 @@ public class Personaje implements Serializable {
 
     public void setPeliculaAsociada(List<Pelicula> peliculaAsociada) {
         this.peliculaAsociada = peliculaAsociada;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.idPersonaje);
+        hash = 31 * hash + Objects.hashCode(this.imagen);
+        hash = 31 * hash + Objects.hashCode(this.nombre);
+        hash = 31 * hash + this.edad;
+        hash = 31 * hash + Float.floatToIntBits(this.peso);
+        hash = 31 * hash + Objects.hashCode(this.historia);
+        hash = 31 * hash + Objects.hashCode(this.peliculaAsociada);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Personaje other = (Personaje) obj;
+        if (this.edad != other.edad) {
+            return false;
+        }
+        if (Float.floatToIntBits(this.peso) != Float.floatToIntBits(other.peso)) {
+            return false;
+        }
+        if (!Objects.equals(this.imagen, other.imagen)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.historia, other.historia)) {
+            return false;
+        }
+        if (!Objects.equals(this.idPersonaje, other.idPersonaje)) {
+            return false;
+        }
+        if (!Objects.equals(this.peliculaAsociada, other.peliculaAsociada)) {
+            return false;
+        }
+        return true;
     }
     
     

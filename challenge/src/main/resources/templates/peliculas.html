@@ -23,11 +23,11 @@
                     
                     <td th:text="${pelicula.fechaCreacion}"></td>
                     
-                    <td><a th:href="@{/movies/detalle(idPelicula=${pelicula.idPelicula})}">Detalle</td>
+                    <td><a th:href="@{/peliculas/detalle(idPelicula=${pelicula.idPelicula})}">Detalle</td>
                     
-                    <td><a th:href="@{/movies/editar(idPelicula=${pelicula.idPelicula})}"/>Editar</td>
+                    <td><a th:href="@{/peliculas/editar(idPelicula=${pelicula.idPelicula})}"/>Editar</td>
                     
-                    <td><a th:href="@{/movies/eliminar(idPelicula=${pelicula.idPelicula})}"/>Eliminar</td>
+                    <td><a th:href="@{/peliculas/eliminar(idPelicula=${pelicula.idPelicula})}"/>Eliminar</td>
                 </tr>
             </table>
         <br/>

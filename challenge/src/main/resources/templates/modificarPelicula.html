@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Datos de la Pelicula</h1>
-        <form th:action="@{/movies/guardar}" method="post" th:object="${pelicula}">
+        <form th:action="@{/peliculas/guardar}" method="post" th:object="${pelicula}">
             <input type=hidden name="idPelicula" th:field="*{idPelicula}"/>
             <br/>
             <label for="titulo">Titulo:</label>

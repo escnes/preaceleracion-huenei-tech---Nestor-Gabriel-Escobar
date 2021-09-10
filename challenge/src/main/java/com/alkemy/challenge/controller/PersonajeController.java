@@ -1,56 +1,68 @@
 package com.alkemy.challenge.controller;
 
+import com.alkemy.challenge.dto.DetallePersonajeDto;
+import com.alkemy.challenge.dto.PeliculaDto;
 import com.alkemy.challenge.model.Personaje;
 import com.alkemy.challenge.service.PersonajeService;
+import com.alkemy.challenge.dto.PersonajeDto;
+import com.alkemy.challenge.model.Pelicula;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @CrossOrigin("*")
 public class PersonajeController {
     @Autowired
     private PersonajeService personajeService;
     
     @GetMapping("/characters")
-    public String listaPersonajes(Model model){
-        var personajes = personajeService.listarPersonajes();
-        model.addAttribute("personajes",personajes);
-        return "characters";
+    public List<PersonajeDto> listCharacters(){
+        List<PersonajeDto> personajesDto = new ArrayList<>();
+        List<Personaje> personajes = personajeService.listarPersonajes();
+        personajes.forEach(personaje -> {
+            personajesDto.add(new PersonajeDto(personaje.getNombre(),personaje.getImagen()));
+        });
+        return personajesDto;
     }
     
-    @GetMapping("/characters/crear")
-    public String crearPersonaje(Personaje personaje){
-        return "modificarPersonaje";
+    @PostMapping("/characters")
+    public Personaje saveCharacter(@RequestBody Personaje personaje){
+        return personajeService.guardarPersonaje(personaje);
     }
     
-    @PostMapping("/characters/guardar")
-    public String guardarPersonaje(Personaje personaje){
-        personajeService.guardarPersonaje(personaje);
-        return "redirect:/characters";
+    @GetMapping("/characters/{id}")
+    public DetallePersonajeDto oneCharacter(@PathVariable Long id){
+        Personaje personaje = personajeService.encontrarPersonajePorId(id);
+        List<PeliculaDto> peliculasDto = new ArrayList();
+        List<Pelicula> peliculas = personaje.getPeliculaAsociada();
+        peliculas.forEach(pelicula->{
+            peliculasDto.add(new PeliculaDto(pelicula.getTitulo(),pelicula.getImagen(),pelicula.getFechaCreacion()));
+        });
+        return new DetallePersonajeDto(personaje.getImagen(),personaje.getNombre(),personaje.getEdad(),personaje.getPeso(),personaje.getHistoria(),peliculasDto);
     }
     
-    @GetMapping("/characters/editar")
-    public String editar(Personaje personaje, Model model){
-       personaje = personajeService.encontrarPersonaje(personaje);
-       model.addAttribute("personaje", personaje);
-       return "modificarPersonaje";
+    @PutMapping("/characters/{id}")
+    public DetallePersonajeDto editCharacter(@RequestBody Personaje nuevoPersonaje, @PathVariable Long id){
+        Personaje personaje = personajeService.guardarPersonaje(id,nuevoPersonaje);
+        List<PeliculaDto> peliculasDto = new ArrayList();
+        List<Pelicula> peliculas = personaje.getPeliculaAsociada();
+        peliculas.forEach(pelicula->{
+            peliculasDto.add(new PeliculaDto(pelicula.getTitulo(),pelicula.getImagen(),pelicula.getFechaCreacion()));
+        });
+        return new DetallePersonajeDto(personaje.getImagen(),personaje.getNombre(),personaje.getEdad(),personaje.getPeso(),personaje.getHistoria(),peliculasDto);
     }
     
-    @DeleteMapping("/characters/eliminar")
-    public String eliminarPersonaje(Personaje personaje){
-        personajeService.eliminarPersonaje(personaje);
-        return "redirect:/characters";
-    }
-    
-    @GetMapping("/characters/detalle")
-    public String detallePersonaje(Personaje personaje, Model model){
-        personaje = personajeService.encontrarPersonaje(personaje);
-        model.addAttribute("personaje", personaje);
-        return "detallePersonaje";
+    @DeleteMapping("/characters/{id}")
+    public void deleteCharacter(@PathVariable Long id){
+        personajeService.eliminarPersonajePorId(id);
     }
 }
