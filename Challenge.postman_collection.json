@@ -1,0 +1,774 @@
+{
+	"info": {
+		"_postman_id": "1d3f110c-340f-4243-a974-76fadd556835",
+		"name": "Challenge",
+		"description": "Esta es una API para explorar el mundo de Disney, la cual permitirá conocer y modificar los personajes que lo componen y entender en qué películas estos participaron.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "characters",
+			"item": [
+				{
+					"name": "GetAllCharacters",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							]
+						},
+						"description": "Esta petición me devuelve una lista de los personajes de Disney con sus nombres e imágenes."
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneCharacter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"{id}"
+							]
+						},
+						"description": "Esta petición me devuelve todos los atributos del personaje, incluso sus películas asociadas, cuyo id haya especificado."
+					},
+					"response": []
+				},
+				{
+					"name": "SaveCharacter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagen\": \"\\\\images\\\\personajes\\\\cenicienta.jpg\",\r\n    \"nombre\": \"Cenicienta\",\r\n    \"edad\": 16,\r\n    \"peso\": 65.0,\r\n    \"historia\": \"Personaje de la pelicula La cenicienta\",\r\n    \"peliculasAsociadas\": [\r\n        {\r\n            \"idPelicula\":3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							]
+						},
+						"description": "Creo un personaje de Disney, para las películas asociadas debo pasar solo el id de las películas."
+					},
+					"response": []
+				},
+				{
+					"name": "EditCharacter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagen\": \"\\\\images\\\\personajes\\\\cenicienta.jpg\",\r\n    \"nombre\": \"La Cenicienta\",\r\n    \"edad\": 25,\r\n    \"peso\": 70.0,\r\n    \"historia\": \"Personaje de la pelicula La cenicienta\",\r\n    \"peliculasAsociadas\": [\r\n        {\r\n            \"idPelicula\":3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/characters/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"{id}"
+							]
+						},
+						"description": "Edita un personaje ya existente en la base de datos. En el body van los mismos atributos que para un post."
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCharacter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters",
+								"{id}"
+							]
+						},
+						"description": "Elimina un personaje de Disney cuyo id se haya especificado."
+					},
+					"response": []
+				},
+				{
+					"name": "GetCharacterByName",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters?name=Cenicienta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Cenicienta"
+								}
+							]
+						},
+						"description": "Permite buscar un personaje por su nombre."
+					},
+					"response": []
+				},
+				{
+					"name": "GetCharacterByAge",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters?age=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Permite buscar un personaje por su edad."
+					},
+					"response": []
+				},
+				{
+					"name": "GetCharacterByIdMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/characters?idMovie={id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "idMovie",
+									"value": "{id}"
+								}
+							]
+						},
+						"description": "Permite buscar un personaje por el id de la película en la cual se encuentre asociado."
+					},
+					"response": []
+				}
+			],
+			"description": "Acá están las operaciones relacionadas a los personajes de Disney.",
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "GetAllMovies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Devuelve una lista de todas las películas de Disney."
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"{id}"
+							]
+						},
+						"description": "Devuelve todos los atributos de una película de Disney"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagen\": \"\\\\images\\\\movies\\\\tarzan.jpg\",\r\n    \"titulo\": \"Tarzán\",\r\n    \"fechaCreacion\": \"1999-07-08\",\r\n    \"calificacion\": 4,\r\n    \"personajesAsociados\": [\r\n        {\r\n            \"idPersonaje\":1\r\n        }\r\n    ],\r\n    \"generosAsociados\": [\r\n        {\r\n            \"idGenero\":1\r\n        },\r\n        {\r\n            \"idGenero\":2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							]
+						},
+						"description": "Crea una película de Disney"
+					},
+					"response": []
+				},
+				{
+					"name": "EditMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imagen\": \"\\\\images\\\\movies\\\\tarzan.jpg\",\r\n    \"titulo\": \"Tarzán\",\r\n    \"fechaCreacion\": \"1999-07-08\",\r\n    \"calificacion\": 5,\r\n    \"personajesAsociados\": [\r\n        {\r\n            \"idPersonaje\":1\r\n        }\r\n    ],\r\n    \"generosAsociados\": [\r\n        {\r\n            \"idGenero\":1\r\n        },\r\n        {\r\n            \"idGenero\":2\r\n        },\r\n        {\r\n            \"idGenero\":3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "Edita una película de Disney."
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies",
+								"1"
+							]
+						},
+						"description": "Elimina una película de Disney"
+					},
+					"response": []
+				},
+				{
+					"name": "GetMoviesByTitle",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies?title=Tarzán",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Tarzán"
+								}
+							]
+						},
+						"description": "Permite buscar una película a partir de su título."
+					},
+					"response": []
+				},
+				{
+					"name": "GetMoviesByGenre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies?genre={id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "{id}"
+								}
+							]
+						},
+						"description": "Permite buscar una película según el genero a la que se encuentre asociada."
+					},
+					"response": []
+				},
+				{
+					"name": "GetMoviesByOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIYWRva2VuIiwiZXhwIjoxNjMxNzIwNTY1LCJpYXQiOjE2MzE2ODQ1NjV9.29Mzp33UFLMmzfxHvDDz3xJldH0MjXyyLjQkQ51sqsQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movies?order=DESC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "DESC"
+								}
+							]
+						},
+						"description": "Permite buscar una pelicula en orden ascendente o descendente en cuanto al título."
+					},
+					"response": []
+				}
+			],
+			"description": "Aquí se encuentran las operaciones relacionadas a las películas de Disney.",
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "UserRegister",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123_Abcd",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alkemychallangenesesc@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"name\": \"Néstor Gabriel\",\r\n    \"lastname\":\"Escobar\",\r\n    \"mail\":\"nestor.escobar.nge@gmail.com\",\r\n    \"username\":\"nge\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registra un usuario el cual va a recibir un token."
+					},
+					"response": []
+				},
+				{
+					"name": "UserAuthentication",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123_Abcd",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "alkemychallangenesesc@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"nge\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/authentication",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"authentication"
+							]
+						},
+						"description": "Devuelve el token que se va a utilizar para hacer las peticiones a /characters y /movies"
+					},
+					"response": []
+				}
+			],
+			"description": "Estas son las acciones relacionadas con los usuarios.",
+			"auth": {
+				"type": "basic"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

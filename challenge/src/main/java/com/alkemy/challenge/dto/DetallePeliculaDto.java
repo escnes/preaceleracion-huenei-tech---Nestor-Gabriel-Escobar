@@ -3,6 +3,7 @@ package com.alkemy.challenge.dto;
 import java.io.Serializable;
 import java.util.List;
 
+//Objeto plano que me sirve para poder devolver atributos personalizados
 public class DetallePeliculaDto implements Serializable {
     
     private String imagen;
@@ -15,11 +16,14 @@ public class DetallePeliculaDto implements Serializable {
     
     private List<PersonajeDto> personajesAsociados;
 
-    public DetallePeliculaDto(String imagen, String titulo, String fechaCreacion, int calificacion, List<PersonajeDto> personajesAsociados) {
+    private List<GeneroDto> generosAsociados;
+    
+    public DetallePeliculaDto(String imagen, String titulo, String fechaCreacion, int calificacion, List<GeneroDto> generosAsociados, List<PersonajeDto> personajesAsociados) {
         this.imagen = imagen;
         this.titulo = titulo;
         this.fechaCreacion = fechaCreacion;
         this.calificacion = calificacion;
+        this.generosAsociados = generosAsociados;
         this.personajesAsociados = personajesAsociados;
     }
     
@@ -61,6 +65,14 @@ public class DetallePeliculaDto implements Serializable {
 
     public void setPersonajesAsociados(List<PersonajeDto> personajesAsociados) {
         this.personajesAsociados = personajesAsociados;
+    }
+
+    public List<GeneroDto> getGenerosAsociados() {
+        return generosAsociados;
+    }
+
+    public void setGenerosAsociados(List<GeneroDto> generosAsociados) {
+        this.generosAsociados = generosAsociados;
     }
     
     
