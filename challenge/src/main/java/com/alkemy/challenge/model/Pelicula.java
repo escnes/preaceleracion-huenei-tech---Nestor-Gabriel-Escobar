@@ -2,7 +2,6 @@ package com.alkemy.challenge.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -39,22 +38,22 @@ public class Pelicula implements Serializable {
     @Column
     private int calificacion;
     
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "pelicula_personaje",
             joinColumns = @JoinColumn(name = "id_pelicula"),
             inverseJoinColumns = @JoinColumn(name = "id_personaje")
     )
-    private List<Personaje> personajeAsociado;
+    private List<Personaje> personajesAsociados;
     
-    @JsonIgnore
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "pelicula_genero",
             joinColumns = @JoinColumn(name = "id_pelicula"),
             inverseJoinColumns = @JoinColumn(name = "id_genero")
     )
-    private List<Genero> generoAsociado;
+    private List<Genero> generosAsociados;
 
     public Long getIdPelicula() {
         return idPelicula;
@@ -96,20 +95,20 @@ public class Pelicula implements Serializable {
         this.calificacion = calificacion;
     }
 
-    public List<Personaje> getPersonajeAsociado() {
-        return personajeAsociado;
+    public List<Personaje> getPersonajesAsociados() {
+        return personajesAsociados;
     }
 
-    public void setPersonajeAsociado(List<Personaje> personajeAsociado) {
-        this.personajeAsociado = personajeAsociado;
+    public void setPersonajesAsociados(List<Personaje> personajesAsociados) {
+        this.personajesAsociados = personajesAsociados;
     }
 
-    public List<Genero> getGeneroAsociado() {
-        return generoAsociado;
+    public List<Genero> getGenerosAsociados() {
+        return generosAsociados;
     }
 
-    public void setGeneroAsociado(List<Genero> generoAsociado) {
-        this.generoAsociado = generoAsociado;
+    public void setGenerosAsociados(List<Genero> generoAsociado) {
+        this.generosAsociados = generoAsociado;
     }
 
     @Override
@@ -120,8 +119,8 @@ public class Pelicula implements Serializable {
         hash = 97 * hash + Objects.hashCode(this.titulo);
         hash = 97 * hash + Objects.hashCode(this.fechaCreacion);
         hash = 97 * hash + this.calificacion;
-        hash = 97 * hash + Objects.hashCode(this.personajeAsociado);
-        hash = 97 * hash + Objects.hashCode(this.generoAsociado);
+        hash = 97 * hash + Objects.hashCode(this.personajesAsociados);
+        hash = 97 * hash + Objects.hashCode(this.generosAsociados);
         return hash;
     }
 
@@ -152,10 +151,10 @@ public class Pelicula implements Serializable {
         if (!Objects.equals(this.idPelicula, other.idPelicula)) {
             return false;
         }
-        if (!Objects.equals(this.personajeAsociado, other.personajeAsociado)) {
+        if (!Objects.equals(this.personajesAsociados, other.personajesAsociados)) {
             return false;
         }
-        if (!Objects.equals(this.generoAsociado, other.generoAsociado)) {
+        if (!Objects.equals(this.generosAsociados, other.generosAsociados)) {
             return false;
         }
         return true;

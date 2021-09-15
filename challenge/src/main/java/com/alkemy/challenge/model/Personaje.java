@@ -21,14 +21,14 @@ public class Personaje implements Serializable {
     public Personaje() {
     }
 
-    public Personaje(Long idPersonaje, String imagen, String nombre, int edad, float peso, String historia, List<Pelicula> peliculaAsociada) {
+    public Personaje(Long idPersonaje, String imagen, String nombre, int edad, float peso, String historia, List<Pelicula> peliculasAsociadas) {
         this.idPersonaje = idPersonaje;
         this.imagen = imagen;
         this.nombre = nombre;
         this.edad = edad;
         this.peso = peso;
         this.historia = historia;
-        this.peliculaAsociada = peliculaAsociada;
+        this.peliculasAsociadas = peliculasAsociadas;
     }
     
     @Id
@@ -51,13 +51,13 @@ public class Personaje implements Serializable {
     @Column
     private String historia;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "pelicula_personaje",
             joinColumns = @JoinColumn(name = "id_personaje"),
             inverseJoinColumns = @JoinColumn(name = "id_pelicula")
     )
-    private List<Pelicula> peliculaAsociada;
+    private List<Pelicula> peliculasAsociadas;
 
     public Long getIdPersonaje() {
         return idPersonaje;
@@ -107,12 +107,12 @@ public class Personaje implements Serializable {
         this.historia = historia;
     }
 
-    public List<Pelicula> getPeliculaAsociada() {
-        return peliculaAsociada;
+    public List<Pelicula> getPeliculasAsociadas() {
+        return peliculasAsociadas;
     }
 
-    public void setPeliculaAsociada(List<Pelicula> peliculaAsociada) {
-        this.peliculaAsociada = peliculaAsociada;
+    public void setPeliculasAsociadas(List<Pelicula> peliculaAsociada) {
+        this.peliculasAsociadas = peliculaAsociada;
     }
 
     @Override
@@ -124,7 +124,7 @@ public class Personaje implements Serializable {
         hash = 31 * hash + this.edad;
         hash = 31 * hash + Float.floatToIntBits(this.peso);
         hash = 31 * hash + Objects.hashCode(this.historia);
-        hash = 31 * hash + Objects.hashCode(this.peliculaAsociada);
+        hash = 31 * hash + Objects.hashCode(this.peliculasAsociadas);
         return hash;
     }
 
@@ -158,7 +158,7 @@ public class Personaje implements Serializable {
         if (!Objects.equals(this.idPersonaje, other.idPersonaje)) {
             return false;
         }
-        if (!Objects.equals(this.peliculaAsociada, other.peliculaAsociada)) {
+        if (!Objects.equals(this.peliculasAsociadas, other.peliculasAsociadas)) {
             return false;
         }
         return true;

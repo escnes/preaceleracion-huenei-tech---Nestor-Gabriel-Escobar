@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
+//Clase que fui desarrollando al principio para poder ver en la web, utiliza las paginas que están en other sources/resources/templates, la deje de desarrollar al implementar la seguridad
 @Controller
 public class WebController {
     @Autowired
@@ -18,9 +20,15 @@ public class WebController {
     @Autowired
     private PersonajeService personajeService;
     
+    
     @GetMapping("/")
     public String inicio(){
         return "index";
+    }
+    
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
     
     @GetMapping("/peliculas")

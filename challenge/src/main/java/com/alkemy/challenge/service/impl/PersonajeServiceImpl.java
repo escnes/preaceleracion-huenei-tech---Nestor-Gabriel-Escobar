@@ -58,14 +58,13 @@ public class PersonajeServiceImpl implements PersonajeService{
                     personaje.setEdad(nuevoPersonaje.getEdad());
                     personaje.setHistoria(nuevoPersonaje.getHistoria());
                     personaje.setPeso(nuevoPersonaje.getPeso());
-                    System.out.println("\n\n\n"+nuevoPersonaje.getPeliculaAsociada()+"\n\n\n");
                     List<Pelicula> peliculas = new ArrayList<>();
-                    nuevoPersonaje.getPeliculaAsociada().forEach((t) -> {
+                    nuevoPersonaje.getPeliculasAsociadas().forEach((t) -> {
                         peliculas.add(peliculaDao.getById(t.getIdPelicula()));
                     });
-                    personaje.setPeliculaAsociada(peliculas);
+                    personaje.setPeliculasAsociadas(peliculas);
                     return personajeDao.save(personaje);
-        })
+                })
                 .orElseGet(() -> {
                     nuevoPersonaje.setIdPersonaje(id);
                     return personajeDao.save(nuevoPersonaje);
